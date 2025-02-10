@@ -1,0 +1,95 @@
+body {
+    text-align: center;
+    margin: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    padding: 8px;
+    background-color: rgb(194, 193, 193);
+    height: fit-content;
+}
+
+main {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    margin: 0;
+}
+
+.calendar-container {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 400px;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+button {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.day,
+.header {
+    padding: 10px;
+    background: #fff;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.header {
+    font-weight: bold;
+    background: #eee;
+}
+
+.commemorative {
+    background-color: yellow;
+    cursor: pointer;
+}
+
+#special-days {
+    margin-top: 10px;
+}
+
+#description {
+    margin-top: 10px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    margin: 0 auto;
+    right: 0px;
+    left: 0px;
+    height: fit-content;
+    background-color: rgb(194, 193, 193);
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+a {
+    text-decoration: none;
+    font-size: 1.3rem;
+}
