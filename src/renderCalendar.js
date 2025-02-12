@@ -1,4 +1,4 @@
-import { getCommemorativeDays } from "./getCommemorativeDays.mjs";
+import { getCommemorativeDays } from "./getCommemorativeDays.js";
 
 function renderCalendar(year, month, events) {
   const grid = document.getElementById("grid");

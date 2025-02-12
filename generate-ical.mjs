@@ -1,6 +1,6 @@
 import fs from 'fs';
 import daysData from "./data/days.json" with { type: "json" };
-import {getCommemorativeDays} from './src/getCommemorativeDays.mjs'
+import {getCommemorativeDays} from './src/getCommemorativeDays.js'
 
 const START_YEAR = 2020;
 const END_YEAR = 2030;
