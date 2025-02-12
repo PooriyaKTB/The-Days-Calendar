@@ -1,5 +1,5 @@
-import { renderCalendar } from "./renderCalendar.js";
-import { updateMonthInput } from "./updateMonthInput.js";
+import { renderCalendar } from "./src/renderCalendar.js";
+import { updateMonthInput } from "./src/updateMonthInput.js";
 import daysData from "./data/days.json" with { type: "json" };
 
 const monthInput = document.querySelector("#month-year");
