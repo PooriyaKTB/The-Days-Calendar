@@ -1,7 +1,52 @@
-// This is a placeholder file which shows how you can access functions and data defined in other files. You can delete the contents of the file once you have understood how it works.
-// It can be run with `node`.
+import fs from 'fs';
+import daysData from "./data/days.json" with { type: "json" };
+import {getCommemorativeDays} from './src/getCommemorativeDays.mjs'
 
-import { getGreeting } from "./common.mjs";
-import daysData from "./days.json" with { type: "json" };
+const START_YEAR = 2020;
+const END_YEAR = 2030;
+const MONTHS = {
+  January: 0, February: 1, March: 2, April: 3, May: 4, June: 5,
+  July: 6, August: 7, September: 8, October: 9, November: 10, December: 11
+};
 
-console.log(`{getGreeting()} - there are ${daysData.length} known days`);
+// Format date to iCal format (YYYYMMDDTHHmmssZ)
+function formatDateToICal(date) {
+  return date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+}
+
+// Function to generate the iCal file content
+function generateICal() {
+  let icalData = [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//Commemorative Days//EN'
+  ];
+
+  for (let year = START_YEAR; year <= END_YEAR; year++) {
+    for (let month = 0; month < 12; month++) {
+      let specialDays = getCommemorativeDays(year, month, daysData);
+
+      Object.entries(specialDays).forEach(([day, event]) => {
+        let eventDate = new Date(year, month, parseInt(day));
+        let formattedDate = formatDateToICal(eventDate);
+        
+        icalData.push(
+          'BEGIN:VEVENT',
+          `SUMMARY:${event.name}`,
+          `DTSTART:${formattedDate}`,
+          `DTEND:${formattedDate}`,
+          `DESCRIPTION:More info at ${event.descriptionURL}`,
+          `UID:${event.name.replace(/\s+/g, '')}-${year}@commemorative-days.com`,
+          'END:VEVENT'
+        );
+      });
+    }
+  }
+
+  icalData.push('END:VCALENDAR');
+  return icalData.join('\r\n');
+}
+
+const icalContent = generateICal();
+fs.writeFileSync('commemorative_daysss.ics', icalContent);
+console.log('✅ iCal file saved as commemorative_days.ics');
